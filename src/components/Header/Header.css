@@ -1,0 +1,28 @@
+
+header {
+	text-align: center;
+}
+
+header img {
+	height: 100px;
+}
+
+header nav {
+	background-color: #000;
+	line-height: 50px;
+}
+
+header nav a {
+	font-size: 20px;
+	text-decoration: none;
+	color: #fff;
+	padding: 11px;
+}
+
+header nav a:hover {
+	background-color: lightpink;
+	border-bottom: 3px solid goldenrod;
+	color: #000;
+	transition: linear;
+	transition-duration: .2s;
+}

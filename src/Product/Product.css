@@ -1,0 +1,25 @@
+
+.single-product {
+	display: flex;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+}
+
+.product-info {
+	margin-left: 5px;
+}
+
+.btn-regular {
+	height: 30px;
+	width: 180px;
+	font-weight: 600;
+	background-color: goldenrod;
+	border: 1px solid salmon;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.icon-color {
+	color: goldenrod;
+}

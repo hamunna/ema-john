@@ -1,0 +1,81 @@
+import React, { useEffect, useState } from 'react';
+import Product from '../../Product/Product';
+import { addToDb, getStoredCart } from '../../utilities/fakedb';
+import Cart from '../Cart/Cart';
+import './Shop.css';
+
+const Shop = () => {
+	const [products, setProducts] = useState([]);
+	const [cart, setCart] = useState([]);
+	const [displayProducts, setDisplayProducts] = useState([]);
+
+	const handleAddToCart = product => {
+		const newCart = [...cart, product];
+		setCart(newCart);
+		// console.log(product)
+		addToDb(product.key)
+	}
+	useEffect(() => {
+		fetch('./products.JSON')
+			.then(res => res.json())
+			.then(data => {
+				setProducts(data);
+				setDisplayProducts(data);
+			});
+	}, []);
+
+	useEffect(() => {
+		if (products.length) {
+			const savedCart = getStoredCart();
+			const storedCart = [];
+
+			for (const key in savedCart) {
+
+				const addedProduct = products.find(product => product.key === key);
+				if (addedProduct) {
+					const quantity = savedCart[key];
+					addedProduct.quantity = quantity;
+					storedCart.push(addedProduct);
+				}
+			}
+			setCart(storedCart);
+		}
+	}, [products]);
+
+	const handleSearch = event => {
+		const searchedText = event.target.value;
+		const matchedProduct = products.filter(product => product.name.toLowerCase().includes(searchedText.toLowerCase()));
+		setDisplayProducts(matchedProduct)
+		console.log(matchedProduct.length);
+	}
+	return (
+		<div>
+			<div className="search-container">
+				<input
+					type="search"
+					placeholder="Search Here"
+					onChange={handleSearch}
+				/>
+			</div>
+
+			<div className="shop-container">
+
+				<div className="product-container">
+					{
+						displayProducts.map(product => <Product
+							key={product.key}
+							product={product}
+							handleAddToCart={handleAddToCart}
+						></Product>)
+					}
+				</div>
+
+				<div className="cart-container">
+					<Cart cart={cart} ></Cart>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+export default Shop;
