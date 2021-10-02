@@ -9,20 +9,20 @@ const Header = () => {
 			<header>
 				<img src={logo} alt="" />
 
-				{/* <nav>
-					<NavLink to="/Shop"><a href="/Shop">Shop</a></NavLink>
-
-					<NavLink to="/Review"><a href="/Review">Order Reviews</a></NavLink>
-
-					<NavLink to="/Inventory"><a href="/Inventory">Manage Inventory</a></NavLink>
-				</nav> */}
-
 				<nav>
+					<NavLink to="/Shop">Shop</NavLink>
+
+					<NavLink to="/Review">Order Review</NavLink>
+
+					<NavLink to="/Inventory">Manage Inventory</NavLink>
+				</nav>
+
+				{/* <nav>
 					<a href="/Shop">Shop</a>
 					<a href="/Review">Order Review</a>
 					<a href="/Inventory">Manage Inventory</a>
 					
-				</nav>
+				</nav> */}
 
 			</header>
 		</div>
